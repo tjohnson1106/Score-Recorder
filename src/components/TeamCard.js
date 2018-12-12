@@ -1,7 +1,7 @@
 import React from "react";
 
 const TeamCard = ({ onGoal, goals, name, onChangeName }) => (
-  <article className="mw5 bg-white br3 pa3 pa4-ns mv3 ba b--black-10 mr2">
+  <article className="mw5 bg-white br3 pa3 pa4-ns mv3 ba b--black-10 pa3 mr2">
     <div className="tc">
       <div className="measure">
         <label htmlFor="name" className="f6 b db mb2">

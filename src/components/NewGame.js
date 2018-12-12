@@ -3,11 +3,13 @@ import { compose, graphql } from "react-apollo";
 
 import TeamCard from "./TeamCard";
 import getCurrentGame from "../data/graphql/queries/getCurrentGame";
+import updateGame from "../data/graphql/mutations/updateGame";
 
 class NewGame extends Component {
   state = {};
   render() {
     const {
+      updateGame,
       currentGame: { teamAScore, teamBScore, teamAName, teamBName }
     } = this.props;
     return (
@@ -17,13 +19,13 @@ class NewGame extends Component {
             name={teamAName}
             onChangeName={e => console.log(e.target.value)}
             goals={teamAScore}
-            onGoal={() => console.log("Goal")}
+            onGoal={updateGame}
           />
           <TeamCard
             name={teamBName}
             onChangeName={e => console.log(e.target.value)}
             goals={teamBScore}
-            onGoal={() => console.log("Goal")}
+            onGoal={updateGame}
           />
         </div>
 
@@ -36,6 +38,7 @@ class NewGame extends Component {
 }
 
 export default compose(
+  graphql(updateGame, { name: "updateGame" }),
   graphql(getCurrentGame, {
     props: ({ data: { currentGame } }) => ({
       currentGame

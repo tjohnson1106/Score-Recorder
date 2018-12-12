@@ -26,7 +26,14 @@ const defaultState = {
 
 const stateLink = withClientState({
   cache,
-  defaults: defaultState
+  defaults: defaultState,
+  resolvers: {
+    Mutation: {
+      updateGame: (_, { index, value }, { cache }) => {
+        console.log(index, value);
+      }
+    }
+  }
 });
 
 // using ApolloLink statelink and the graph.cool API
@@ -45,8 +52,10 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
-      <Route exact path="/" component={App} />
-      <Route exact path="/new-score" component={NewGame} />
+      <div>
+        <Route exact path="/" component={App} />
+        <Route path="/new-score" component={NewGame} />
+      </div>
     </Router>
   </ApolloProvider>,
 
