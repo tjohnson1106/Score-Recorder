@@ -1,0 +1,7 @@
+type Game @model {
+  id: ID! @isUnique
+  teamAScore: Int! @migrationValue(value: 0)
+  teamBScore: Int! @migrationValue(value: 0)
+  teamAName: String!
+  teamBName: String!
+}

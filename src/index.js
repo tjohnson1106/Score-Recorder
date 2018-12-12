@@ -34,6 +34,7 @@ const stateLink = withClientState({
         const query = gql`
           query GetCurrentGame {
             currentGame @client {
+              __typename
               teamAScore
               teamBScore
               teamAName
@@ -41,8 +42,23 @@ const stateLink = withClientState({
             }
           }
         `;
+
+        // get state from reading the cached query
+
         const previousState = cache.readQuery({ query });
-        console.log(previousState);
+
+        const data = {
+          ...previousState,
+          currentGame: {
+            ...previousState.currentGame,
+            [index]: value
+          }
+        };
+
+        cache.writeData({
+          query,
+          data
+        });
       }
     }
   }
