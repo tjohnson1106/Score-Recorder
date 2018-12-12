@@ -2,26 +2,27 @@ import React, { Component } from "react";
 import { compose, graphql } from "react-apollo";
 
 import TeamCard from "./TeamCard";
-import getCurrentGame from "../../data/graphql/queries/getCurrentGame";
+import getCurrentGame from "../data/graphql/queries/getCurrentGame";
 
 class NewGame extends Component {
   state = {};
   render() {
-    const { currentGame } = this.props;
+    const {
+      currentGame: { teamAScore, teamBScore, teamAName, teamBName }
+    } = this.props;
     return (
       <div className="pa4 flex flex-column items-center">
         <div className="flex justify-center">
-          {console.log("current-game", currentGame, "current-game")}
           <TeamCard
-            name="Team A"
+            name={teamAName}
             onChangeName={e => console.log(e.target.value)}
-            goals={0}
+            goals={teamAScore}
             onGoal={() => console.log("Goal")}
           />
           <TeamCard
-            name="Team B"
+            name={teamBName}
             onChangeName={e => console.log(e.target.value)}
-            goals={0}
+            goals={teamBScore}
             onGoal={() => console.log("Goal")}
           />
         </div>
