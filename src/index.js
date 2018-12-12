@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "tachyons";
+
 import { InMemoryCache, ApolloClient, HttpLink } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { withClientState } from "apollo-link-state";
 import { ApolloLink } from "apollo-link";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import App from "./App";
 import NewGame from "./components/NewGame";
@@ -49,8 +49,6 @@ ReactDOM.render(
       <Route exact path="/new-score" component={NewGame} />
     </Router>
   </ApolloProvider>,
-
-  <App />,
 
   document.getElementById("root")
 );
