@@ -19,13 +19,27 @@ class NewGame extends Component {
             name={teamAName}
             onChangeName={e => console.log(e.target.value)}
             goals={teamAScore}
-            onGoal={updateGame}
+            onGoal={() =>
+              updateGame({
+                variables: {
+                  index: "teamAScore",
+                  value: parseInt(teamAScore) + 1
+                }
+              })
+            }
           />
           <TeamCard
             name={teamBName}
             onChangeName={e => console.log(e.target.value)}
             goals={teamBScore}
-            onGoal={updateGame}
+            onGoal={() =>
+              updateGame({
+                variables: {
+                  index: "teamBScore",
+                  value: parseInt(teamBScore) + 1
+                }
+              })
+            }
           />
         </div>
 

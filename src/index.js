@@ -6,6 +6,7 @@ import { InMemoryCache, ApolloClient, HttpLink } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { withClientState } from "apollo-link-state";
 import { ApolloLink } from "apollo-link";
+import gql from "graphql-tag";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import * as serviceWorker from "./serviceWorker";
@@ -30,7 +31,18 @@ const stateLink = withClientState({
   resolvers: {
     Mutation: {
       updateGame: (_, { index, value }, { cache }) => {
-        console.log(index, value);
+        const query = gql`
+          query GetCurrentGame {
+            currentGame @client {
+              teamAScore
+              teamBScore
+              teamAName
+              teamBName
+            }
+          }
+        `;
+        const previousState = cache.readQuery({ query });
+        console.log(previousState);
       }
     }
   }
@@ -54,7 +66,7 @@ ReactDOM.render(
     <Router>
       <div>
         <Route exact path="/" component={App} />
-        <Route path="/new-score" component={NewGame} />
+        <Route path="/new-game" component={NewGame} />
       </div>
     </Router>
   </ApolloProvider>,
