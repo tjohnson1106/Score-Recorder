@@ -1,0 +1,376 @@
+enum _ModelMutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+# Meta information about the query.
+type _QueryMeta {
+  count: Int!
+}
+
+input CreateGame {
+  teamAName: String!
+  teamAScore: Int!
+  teamBName: String!
+  teamBScore: Int!
+}
+
+type Game implements Node {
+  id: ID!
+  teamAName: String!
+  teamAScore: Int!
+  teamBName: String!
+  teamBScore: Int!
+}
+
+input GameFilter {
+  # Logical AND on all given filters.
+  AND: [GameFilter!]
+  # Logical OR on all given filters.
+  OR: [GameFilter!]
+  id: ID
+  # All values that are not equal to given value.
+  id_not: ID
+  # All values that are contained in given list.
+  id_in: [ID!]
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+  # All values less than the given value.
+  id_lt: ID
+  # All values less than or equal the given value.
+  id_lte: ID
+  # All values greater than the given value.
+  id_gt: ID
+  # All values greater than or equal the given value.
+  id_gte: ID
+  # All values containing the given string.
+  id_contains: ID
+  # All values not containing the given string.
+  id_not_contains: ID
+  # All values starting with the given string.
+  id_starts_with: ID
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+  # All values ending with the given string.
+  id_ends_with: ID
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  teamAName: String
+  # All values that are not equal to given value.
+  teamAName_not: String
+  # All values that are contained in given list.
+  teamAName_in: [String!]
+  # All values that are not contained in given list.
+  teamAName_not_in: [String!]
+  # All values less than the given value.
+  teamAName_lt: String
+  # All values less than or equal the given value.
+  teamAName_lte: String
+  # All values greater than the given value.
+  teamAName_gt: String
+  # All values greater than or equal the given value.
+  teamAName_gte: String
+  # All values containing the given string.
+  teamAName_contains: String
+  # All values not containing the given string.
+  teamAName_not_contains: String
+  # All values starting with the given string.
+  teamAName_starts_with: String
+  # All values not starting with the given string.
+  teamAName_not_starts_with: String
+  # All values ending with the given string.
+  teamAName_ends_with: String
+  # All values not ending with the given string.
+  teamAName_not_ends_with: String
+  teamAScore: Int
+  # All values that are not equal to given value.
+  teamAScore_not: Int
+  # All values that are contained in given list.
+  teamAScore_in: [Int!]
+  # All values that are not contained in given list.
+  teamAScore_not_in: [Int!]
+  # All values less than the given value.
+  teamAScore_lt: Int
+  # All values less than or equal the given value.
+  teamAScore_lte: Int
+  # All values greater than the given value.
+  teamAScore_gt: Int
+  # All values greater than or equal the given value.
+  teamAScore_gte: Int
+  teamBName: String
+  # All values that are not equal to given value.
+  teamBName_not: String
+  # All values that are contained in given list.
+  teamBName_in: [String!]
+  # All values that are not contained in given list.
+  teamBName_not_in: [String!]
+  # All values less than the given value.
+  teamBName_lt: String
+  # All values less than or equal the given value.
+  teamBName_lte: String
+  # All values greater than the given value.
+  teamBName_gt: String
+  # All values greater than or equal the given value.
+  teamBName_gte: String
+  # All values containing the given string.
+  teamBName_contains: String
+  # All values not containing the given string.
+  teamBName_not_contains: String
+  # All values starting with the given string.
+  teamBName_starts_with: String
+  # All values not starting with the given string.
+  teamBName_not_starts_with: String
+  # All values ending with the given string.
+  teamBName_ends_with: String
+  # All values not ending with the given string.
+  teamBName_not_ends_with: String
+  teamBScore: Int
+  # All values that are not equal to given value.
+  teamBScore_not: Int
+  # All values that are contained in given list.
+  teamBScore_in: [Int!]
+  # All values that are not contained in given list.
+  teamBScore_not_in: [Int!]
+  # All values less than the given value.
+  teamBScore_lt: Int
+  # All values less than or equal the given value.
+  teamBScore_lte: Int
+  # All values greater than the given value.
+  teamBScore_gt: Int
+  # All values greater than or equal the given value.
+  teamBScore_gte: Int
+}
+
+enum GameOrderBy {
+  id_ASC
+  id_DESC
+  teamAName_ASC
+  teamAName_DESC
+  teamAScore_ASC
+  teamAScore_DESC
+  teamBName_ASC
+  teamBName_DESC
+  teamBScore_ASC
+  teamBScore_DESC
+}
+
+type GamePreviousValues {
+  id: ID!
+  teamAName: String!
+  teamAScore: Int!
+  teamBName: String!
+  teamBScore: Int!
+}
+
+input GameSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [GameSubscriptionFilter!]
+  # Logical OR on all given filters.
+  OR: [GameSubscriptionFilter!]
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: GameSubscriptionFilterNode
+}
+
+input GameSubscriptionFilterNode {
+  id: ID
+  # All values that are not equal to given value.
+  id_not: ID
+  # All values that are contained in given list.
+  id_in: [ID!]
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+  # All values less than the given value.
+  id_lt: ID
+  # All values less than or equal the given value.
+  id_lte: ID
+  # All values greater than the given value.
+  id_gt: ID
+  # All values greater than or equal the given value.
+  id_gte: ID
+  # All values containing the given string.
+  id_contains: ID
+  # All values not containing the given string.
+  id_not_contains: ID
+  # All values starting with the given string.
+  id_starts_with: ID
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+  # All values ending with the given string.
+  id_ends_with: ID
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  teamAName: String
+  # All values that are not equal to given value.
+  teamAName_not: String
+  # All values that are contained in given list.
+  teamAName_in: [String!]
+  # All values that are not contained in given list.
+  teamAName_not_in: [String!]
+  # All values less than the given value.
+  teamAName_lt: String
+  # All values less than or equal the given value.
+  teamAName_lte: String
+  # All values greater than the given value.
+  teamAName_gt: String
+  # All values greater than or equal the given value.
+  teamAName_gte: String
+  # All values containing the given string.
+  teamAName_contains: String
+  # All values not containing the given string.
+  teamAName_not_contains: String
+  # All values starting with the given string.
+  teamAName_starts_with: String
+  # All values not starting with the given string.
+  teamAName_not_starts_with: String
+  # All values ending with the given string.
+  teamAName_ends_with: String
+  # All values not ending with the given string.
+  teamAName_not_ends_with: String
+  teamAScore: Int
+  # All values that are not equal to given value.
+  teamAScore_not: Int
+  # All values that are contained in given list.
+  teamAScore_in: [Int!]
+  # All values that are not contained in given list.
+  teamAScore_not_in: [Int!]
+  # All values less than the given value.
+  teamAScore_lt: Int
+  # All values less than or equal the given value.
+  teamAScore_lte: Int
+  # All values greater than the given value.
+  teamAScore_gt: Int
+  # All values greater than or equal the given value.
+  teamAScore_gte: Int
+  teamBName: String
+  # All values that are not equal to given value.
+  teamBName_not: String
+  # All values that are contained in given list.
+  teamBName_in: [String!]
+  # All values that are not contained in given list.
+  teamBName_not_in: [String!]
+  # All values less than the given value.
+  teamBName_lt: String
+  # All values less than or equal the given value.
+  teamBName_lte: String
+  # All values greater than the given value.
+  teamBName_gt: String
+  # All values greater than or equal the given value.
+  teamBName_gte: String
+  # All values containing the given string.
+  teamBName_contains: String
+  # All values not containing the given string.
+  teamBName_not_contains: String
+  # All values starting with the given string.
+  teamBName_starts_with: String
+  # All values not starting with the given string.
+  teamBName_not_starts_with: String
+  # All values ending with the given string.
+  teamBName_ends_with: String
+  # All values not ending with the given string.
+  teamBName_not_ends_with: String
+  teamBScore: Int
+  # All values that are not equal to given value.
+  teamBScore_not: Int
+  # All values that are contained in given list.
+  teamBScore_in: [Int!]
+  # All values that are not contained in given list.
+  teamBScore_not_in: [Int!]
+  # All values less than the given value.
+  teamBScore_lt: Int
+  # All values less than or equal the given value.
+  teamBScore_lte: Int
+  # All values greater than the given value.
+  teamBScore_gt: Int
+  # All values greater than or equal the given value.
+  teamBScore_gte: Int
+}
+
+type GameSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Game
+  updatedFields: [String!]
+  previousValues: GamePreviousValues
+}
+
+input InvokeFunctionInput {
+  name: String!
+  input: String!
+  clientMutationId: String
+}
+
+type InvokeFunctionPayload {
+  result: String!
+  clientMutationId: String
+}
+
+type Mutation {
+  createGame(
+    teamAName: String!
+    teamAScore: Int!
+    teamBName: String!
+    teamBScore: Int!
+  ): Game
+  updateGame(
+    id: ID!
+    teamAName: String
+    teamAScore: Int
+    teamBName: String
+    teamBScore: Int
+  ): Game
+  updateOrCreateGame(update: UpdateGame!, create: CreateGame!): Game
+  deleteGame(id: ID!): Game
+  invokeFunction(input: InvokeFunctionInput!): InvokeFunctionPayload
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+type Query {
+  allGames(
+    filter: GameFilter
+    orderBy: GameOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Game!]!
+  _allGamesMeta(
+    filter: GameFilter
+    orderBy: GameOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): _QueryMeta!
+  Game(id: ID): Game
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  Game(filter: GameSubscriptionFilter): GameSubscriptionPayload
+}
+
+input UpdateGame {
+  id: ID!
+  teamAName: String
+  teamAScore: Int
+  teamBName: String
+  teamBScore: Int
+}
