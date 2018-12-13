@@ -4,9 +4,31 @@ import { compose, graphql } from "react-apollo";
 import TeamCard from "./TeamCard";
 import getCurrentGame from "../data/graphql/queries/getCurrentGame";
 import updateGame from "../data/graphql/mutations/updateGame";
+import createGame from "../data/graphql/mutations/createGame";
 
 class NewGame extends Component {
-  state = {};
+  state = {
+    created: false,
+    error: false
+  };
+
+  createGame = async () => {
+    const { createGame, currentGame } = this.props;
+
+    try {
+      await createGame({
+        variables: {
+          ...currentGame
+        }
+      });
+      this.setState({ created: true });
+    } catch (error) {
+      this.setState({
+        error: true
+      });
+    }
+  };
+
   render() {
     const {
       updateGame,
@@ -70,6 +92,7 @@ class NewGame extends Component {
 
 export default compose(
   graphql(updateGame, { name: "updateGame" }),
+  graphql(createGame, { name: "createGame" }),
   graphql(getCurrentGame, {
     props: ({ data: { currentGame } }) => ({
       currentGame
