@@ -17,7 +17,14 @@ class NewGame extends Component {
         <div className="flex justify-center">
           <TeamCard
             name={teamAName}
-            onChangeName={e => console.log(e.target.value)}
+            onChangeName={e =>
+              updateGame({
+                variables: {
+                  index: "teamAName",
+                  value: e.target.value
+                }
+              })
+            }
             goals={teamAScore}
             onGoal={() =>
               updateGame({
@@ -30,7 +37,14 @@ class NewGame extends Component {
           />
           <TeamCard
             name={teamBName}
-            onChangeName={e => console.log(e.target.value)}
+            onChangeName={e =>
+              updateGame({
+                variables: {
+                  index: "teamBName",
+                  value: e.target.value
+                }
+              })
+            }
             goals={teamBScore}
             onGoal={() =>
               updateGame({
@@ -43,7 +57,10 @@ class NewGame extends Component {
           />
         </div>
 
-        <button className="bn f6 link dim br2 ph3 pv2 mb2 dib white bg-green no-outline">
+        <button
+          onClick={this.createGame}
+          className="bn f6 link dim br2 ph3 pv2 mb2 dib white bg-green no-outline"
+        >
           Game Finished
         </button>
       </div>
