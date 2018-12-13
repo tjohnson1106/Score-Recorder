@@ -30,6 +30,9 @@ const stateLink = withClientState({
   defaults: defaultState,
   resolvers: {
     Mutation: {
+      resetCurrentGame: (_, __, { cache }) => {
+        cache.writeData({ defaultState });
+      },
       updateGame: (_, { index, value }, { cache }) => {
         const query = gql`
           query GetCurrentGame {
