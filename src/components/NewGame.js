@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { compose, graphql } from "react-apollo";
 
 import TeamCard from "./TeamCard";
+import { Success, Error } from "../global/Alerts";
 import getCurrentGame from "../data/graphql/queries/getCurrentGame";
 import updateGame from "../data/graphql/mutations/updateGame";
 import createGame from "../data/graphql/mutations/createGame";
@@ -34,8 +35,12 @@ class NewGame extends Component {
       updateGame,
       currentGame: { teamAScore, teamBScore, teamAName, teamBName }
     } = this.props;
+
+    const { error, success } = this.state;
     return (
       <div className="pa4 flex flex-column items-center">
+        {error && <Error />}
+        {success && <Success />}
         <div className="flex justify-center">
           <TeamCard
             name={teamAName}
